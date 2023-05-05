@@ -79,14 +79,15 @@ public class CameraFragment extends Fragment implements AdapterView.OnItemSelect
         Spinner clothingType;
         Spinner clothingColor;
 
-        spring = view.findViewById(R.id.checkBox);
-        summer = view.findViewById(R.id.checkBox4);
-        fall = view.findViewById(R.id.checkBox3);
-        winter = view.findViewById(R.id.checkBox2);
-        patterned = view.findViewById(R.id.checkBox5);
+        spring = view.getRootView().findViewById(R.id.checkBox);
+        summer = view.getRootView().findViewById(R.id.checkBox4);
+        fall = view.getRootView().findViewById(R.id.checkBox3);
+        winter = view.getRootView().findViewById(R.id.checkBox2);
+        patterned = view.getRootView().findViewById(R.id.checkBox5);
 
-        clothingType = view.findViewById(R.id.spinner1);
-        clothingColor = view.findViewById(R.id.spinner2);
+        clothingType = view.getRootView().findViewById(R.id.spinner1);
+        clothingColor = view.getRootView().findViewById(R.id.spinner2);
+
 
         boolean isSpring = spring.isChecked();
         boolean isSummer = summer.isChecked();
@@ -98,7 +99,7 @@ public class CameraFragment extends Fragment implements AdapterView.OnItemSelect
         String color = clothingColor.toString();
 
         AppDatabase db = Room.databaseBuilder(view.getContext(),
-                AppDatabase.class, "database-name").build();
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
 
         ItemDao itemDao = db.itemDao();
 
